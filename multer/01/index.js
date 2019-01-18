@@ -29,8 +29,13 @@ app.get('/', (req, res) => res.render('home'))
 app.post('/', upload.single('img'), (req, res) => {
     let fileBuf = new Buffer.alloc(4, req.file.buffer, 'utf8');
     console.log(req.file.mimetype);
+    if(fileBuf.toString() == 'OggS'){
+        res.send('Ogg');
+    } else {
+        res.send('Não Ogg');
+    }
     console.log(fileBuf.toString());
-    res.send('Arquivo Salvo');
+//    res.send('Arquivo Salvo');
 })
 
 app.listen(3000, () => console.log('running...'))
