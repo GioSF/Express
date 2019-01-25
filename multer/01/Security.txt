@@ -1,0 +1,14 @@
+If you are talking about file uploads to a server use various methods to check the filetype. The overhead is tiny. Magic numbers give you a more robust way to verify the filetype but can still be spoofed.
+
+Never rely on file extension, this is the most trivial part to spoof.
+
+If it were me, regardless of the risk to the system I would always:
+
+    verify file extension (the final extension and anything after a .) after sanitising the entire name
+    verify file size (within defined range)
+    Verify mime type
+    check magic numbers
+
+All the above checks use a whitelist for verification.
+
+I would also make sure the uploaded file gets moved to a secure directory (without exec permissions) and gets assigned a random filename.
